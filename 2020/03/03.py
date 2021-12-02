@@ -1,22 +1,32 @@
-print("Advent of Code 2020 - 03")
-print("===========================================")
-print("Toboggan Trajectory")
-print()
+print("                                             ")
+print("                      *                      ")
+print("                     ***                     ")
+print("                      *                      ")
+print("                    *****                    ")
+print("                  *********                  ")
+print("                *************                ")
+print("             Advent of Code 2020             ")
+print("           ***********************           ")
+print("         ***************************         ")
+print("       * Day 03: Toboggan Trajectory *       ")
+print("     ***********************************     ")
+print("                     ***                     ")
+print("                     ***                     ")
+print("                                             ")
 
 filename = "03.input"
+trees = 0
+LINE_LEN = 31
+position = 0
 
-#trees = 0
-#LINE_LEN = 31
-#position = 0
-#
-#with open(filename) as file:
-#    for line in file:
-#        if(line[position] == '#'):
-#            trees += 1
-#        position += 3
-#        position = position % LINE_LEN
-#
-#print("Number of trees in the way: ", trees)
+with open(filename) as file:
+    for line in file:
+        if(line[position] == '#'):
+            trees += 1
+        position += 3
+        position %= LINE_LEN
+
+print("Number of trees in the way: ", trees)
 
 LINE_LEN     = 31
 SLOPES       = 5

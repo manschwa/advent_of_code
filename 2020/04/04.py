@@ -1,7 +1,18 @@
-print("Advent of Code 2020 - 04")
-print("===========================================")
-print("Day 4: Passport Processing")
-print()
+print("                                             ")
+print("                      *                      ")
+print("                     ***                     ")
+print("                      *                      ")
+print("                    *****                    ")
+print("                  *********                  ")
+print("                *************                ")
+print("             Advent of Code 2020             ")
+print("           ***********************           ")
+print("         ***************************         ")
+print("       * Day 04: Passport Processing *       ")
+print("     ***********************************     ")
+print("                     ***                     ")
+print("                     ***                     ")
+print("                                             ")
 
 filename = "04.input"
 REQ_FIELDS = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid', 'cid'}

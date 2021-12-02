@@ -1,14 +1,18 @@
-print("                      *                      ")
-print("                    *****                    ")
-print("                  *********                  ")
-print("                *************                ")
-print("             Advent of Code 2021             ")
-print("           ***********************           ")
-print("         **     Day 02: Dive!     **         ")
-print("       *******************************       ")
+print("                                             ")
+print("                      △                      ")
+print("                    ◁ ☆ ▷                    ")
+print("                  ,   *   ,                  ")
+print("                  | ***** |                  ")
+print("             ,    *********    ,             ")
+print("             |  *************  |             ")
+print("         ,   Advent of Code 2021   ,         ")
+print("         | *********************** |         ")
+print("     ,   **     Day 02: Dive!     **   ,     ")
+print("     | ******************************* |     ")
 print("     ***********************************     ")
-print("                     ***                     ")
-print("                     ***                     ")
+print("                     ░░░                     ")
+print("                     ░░░                     ")
+print("                                             ")
 
 filename = "02.input"
 position = 0
@@ -26,13 +30,11 @@ with open(filename) as file:
             case 'up':
                 depth -= val
 
-print()
-print("Horizontal position: {}, depth: {}, product of the two: {}".format(position, depth, position * depth))
-print()
+print("Part 1: Horizontal position: {}, depth: {}, product of the two: {}".format(position, depth, position * depth))
 
-aim = 0
-depth = 0
 position = 0
+depth = 0
+aim = 0
 
 with open(filename) as file:
     for line in file:
@@ -47,5 +49,4 @@ with open(filename) as file:
                 position += val
                 depth += aim * val
 
-print("Horizontal position: {}, depth: {}, product of the two: {}".format(position, depth, position * depth))
-print()
+print("Part 2: Horizontal position: {}, depth: {}, product of the two: {}".format(position, depth, position * depth))

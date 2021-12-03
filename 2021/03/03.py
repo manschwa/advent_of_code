@@ -15,6 +15,8 @@ print("                     ░░░                     ")
 print("                                             ")
 
 filename = "03.input"
+with open(filename) as file:
+    raw = file.read().splitlines()
 
 # note: returns 1 when cnt(1) == cnt(0)
 def determine_bit(index,  list):
@@ -25,15 +27,9 @@ def determine_bit(index,  list):
     else:
         return '0'
 
-with open(filename) as file:
-    raw = file.read().splitlines()
-
-gamma_s = ''
+gamma_s = epsilon_s = ''
 for i in range(len(raw[0])):
     gamma_s += determine_bit(i, raw)
-
-epsilon_s = ''
-for i in range(len(raw[0])):
     epsilon_s += '0' if gamma_s[i] == '1' else '1'
 
 gamma_int = int(gamma_s, 2)

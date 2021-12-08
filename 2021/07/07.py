@@ -29,7 +29,8 @@ def calc_fuel(positions, simple = True):
             if simple:
                 fuel[j] = abs(positions[j] - i)
             else:
-                fuel[j] = sum(range(abs(positions[j] - i) + 1))
+                n = abs(positions[j] - i)
+                fuel[j] = int((n * (n + 1)) / 2)
         if sum(fuel) < min_fuel:
             min_fuel = sum(fuel)
 

@@ -54,14 +54,13 @@ def part_one(matrix):
     return sum(sinks) + len(sinks)
 
 def part_two(matrix):
-    sinks = []
+    basins = []
     for i in range(len(matrix)):
         for j in range(len(matrix[0])):
             if check_sink(matrix, i, j):
-                sinks.append(basin_size(matrix.copy(), i, j))
-    sinks.sort()
-    return math.prod(sinks[-3:])
+                basins.append(basin_size(matrix.copy(), i, j))
+    basins.sort()
+    return math.prod(basins[-3:])
 
 print("Part 1: ", part_one(matrix))
-print("Part 2: ", part_two(matrix.copy()))
-
+print("Part 2: ", part_two(matrix))

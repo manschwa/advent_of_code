@@ -34,7 +34,6 @@ def incomplete(line):
                 return False
     return True
 
-
 def incomplete_score(line):
     stack = []
     incomplete_score = 0

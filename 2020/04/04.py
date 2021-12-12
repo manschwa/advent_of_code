@@ -27,7 +27,8 @@ PATTERNS = {'byr' : '^19[2-9][\d]$|^200[0-2]$',
             'hgt' : '^1([5-8][\d]|9[0-3])cm$|^(59|6[\d]|7[0-6])in$',
             'hcl' : '^#[\da-f]{6}$',
             'ecl' : '^amb$|^blu$|^brn$|^gr(y|n)$|^hzl$|^oth$',
-            'pid' : '^\d{9}$'}
+            'pid' : '^\d{9}$',
+            'cid' : ''}
 
 passports = []
 passport = []
@@ -49,17 +50,7 @@ def has_fields(passport):
 def is_valid(passport):
     if has_fields(passport):
         for attribute in passport:
-            match attribute.split(':')[0]:
-                case 'byr': pattern = PATTERNS['byr']
-                case 'iyr': pattern = PATTERNS['iyr']
-                case 'eyr': pattern = PATTERNS['eyr']
-                case 'hgt': pattern = PATTERNS['hgt']
-                case 'hcl': pattern = PATTERNS['hcl']
-                case 'ecl': pattern = PATTERNS['ecl']
-                case 'pid': pattern = PATTERNS['pid']
-                case _ : pattern = ''
-            attr = attribute.split(':')[1]
-            if not re.match(pattern, attr):
+            if not re.match(PATTERNS[attribute.split(':')[0]], attribute.split(':')[1]):
                 return False
         return True
     return False

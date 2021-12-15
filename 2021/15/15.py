@@ -18,7 +18,7 @@ print("                     ░░░                     ")
 print("                     ░░░                     ")
 print("                                             ")
 
-filename = "15.sample"
+filename = "15.input"
 with open(filename) as file:
     raw = file.read().splitlines()
 
@@ -27,9 +27,8 @@ for line in raw:
     SCAN.append([int(i) for i in line])
 
 SCAN = np.array(SCAN)
-print(SCAN)
 
-def add_edges(graph, row, col):
+def add_edges(row, col):
     row_range = [-1, 1]
     col_range = [-1, 1]
 
@@ -45,24 +44,17 @@ def add_edges(graph, row, col):
     for i in range(row_range[0], row_range[1] + 1):
         for j in range(col_range[0], col_range[1] + 1):
             if abs(i) != abs(j):
-                print("Node: ", row, col)
-                print("neighbor: ", row + i, col + j)
-                print("weight: ", SCAN[row + i][col + j])
-                graph.add_edge((row, col), (row + i, col + j), weight = SCAN[row + i][col + j])
+                GRAPH.add_edge((row, col), (row + i, col + j), weight = SCAN[row + i][col + j])
 
-GRAPH = nx.Graph()
+
+GRAPH = nx.DiGraph()
+
 for i in range(len(SCAN)):
     for j in range(len(SCAN[0])):
-        GRAPH.add_node((i, j))
-        add_edges(GRAPH, i, j)
-print(GRAPH.get_edge_data((2,3),(1,3)))
-print(GRAPH.get_edge_data((1,3),(1,4)))
-print(GRAPH.get_edge_data((1,4),(2,4)))
-print()
-print(GRAPH.get_edge_data((2,4),(2,4)))
+        add_edges(i, j)
 
 def part_one():
-    return nx.single_source_dijkstra(GRAPH, (0, 0), (9, 9))
+    return nx.dijkstra_path_length(GRAPH, (0, 0), (99, 99))
 
 def part_two():
     return 'part 2'

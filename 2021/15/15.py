@@ -69,7 +69,7 @@ for i in range(len(CAVE)):
         add_edges(i, j)
 
 def part_one():
-    return nx.dijkstra_path_length(GRAPH, (0, 0), (9, 9))
+    return nx.dijkstra_path_length(GRAPH, (0, 0), (99, 99))
 
 def part_two():
     return nx.dijkstra_path_length(GRAPH, (0, 0), (499, 499))

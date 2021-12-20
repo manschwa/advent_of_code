@@ -39,8 +39,11 @@ for i in range(2, len(raw)):
 
 image = np.array(image)
 
-def enlarge_image(image):
-    enlarged_image = np.zeros((len(image) + 4, len(image[1]) + 4))
+def enlarge_image(image, iteration):
+    if ALGO[0] == 1 and ALGO[-1] == 0 and iteration % 2 == 1:
+        enlarged_image = np.ones((len(image) + 4, len(image[1]) + 4))
+    else:
+        enlarged_image = np.zeros((len(image) + 4, len(image[1]) + 4))
     enlarged_image[2:(len(image) + 2), 2:(len(image[0]) + 2)] = image
     return enlarged_image
 
@@ -54,17 +57,16 @@ def convert_pixel(image, row, col):
     for i in row_range:
         for j in col_range:
             binary_number += str(int(image[row + i][col + j]))
-    number = int(binary_number, 2)
-    return ALGO[number]
+    index = int(binary_number, 2)
+    return ALGO[index]
 
-def convert_image(image):
-    image = enlarge_image(image)
+def convert_image(image, iteration):
+    image = enlarge_image(image, iteration)
     converted_image = np.zeros(image.shape)
     for i in range(1, len(image) - 1):
         for j in range(1, len(image[0]) - 1):
             converted_image[i][j] = convert_pixel(image, i, j)
-    converted_image = crop_image(converted_image)
-    return converted_image
+    return crop_image(converted_image)
 
 def print_image(image):
     for row in image:
@@ -76,13 +78,14 @@ def print_image(image):
         print()
 
 def part_one(image):
-    for _ in range(2):
-        image = convert_image(image)
-        print_image(image)
+    for i in range(2):
+        image = convert_image(image, i)
     return sum(sum(image))
 
-def part_two():
-    return 'part 2'
+def part_two(image):
+    for i in range(50):
+        image = convert_image(image, i)
+    return sum(sum(image))
 
-print("Part 1:", part_one(image))
-print("Part 2:", part_two())
+print("Part 1:", part_one(image.copy()))
+print("Part 2:", part_two(image.copy()))

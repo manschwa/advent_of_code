@@ -7,7 +7,7 @@ My solutions for the Advent of Code puzzles (https://adventofcode.com/)
                   | ***** |
              ,    *********    ,
              |  *************  |
-         ,   Advent of Code 2021   ,
+         ,   * Advents of Code *   ,
          | *********************** |
      ,   ****  Merry Christmas  ****   ,
      | ******************************* |

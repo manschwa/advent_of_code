@@ -10,9 +10,9 @@ with open(filename) as file:
 
 def play(round):
     points = 0
-    win = [-2, 1]
+    wins = [-2, 1]
     result = round[1] - round[0]
-    if result in win:
+    if result in wins:
         points += 6
     elif result == 0:
         points += 3
@@ -28,25 +28,18 @@ def part_one():
 
 def part_two():
     points = 0
+    win_strat = [0, 2, 3, 1]
+    loss_strat = [0, 3, 1, 2]
     for line in lines:
         l = line.replace('A', '1').replace('B', '2').replace('C', '3')
         rnd = l.split()
-        if rnd[1] == 'X':
-            if rnd[0] == '1':
-                rnd[1] = '3'
-            if rnd[0] == '2':
-                rnd[1] = '1'
-            if rnd[0] == '3':
-                rnd[1] = '2'
-        if rnd[1] == 'Y':
-            rnd[1] = rnd[0]
-        if rnd[1] == 'Z':
-            if rnd[0] == '1':
-                rnd[1] = '2'
-            if rnd[0] == '2':
-                rnd[1] = '3'
-            if rnd[0] == '3':
-                rnd[1] = '1'
+        match rnd[1]:
+            case 'X':
+                rnd[1] = loss_strat[int(rnd[0])]
+            case 'Y':
+                rnd[1] = rnd[0]
+            case 'Z':
+                rnd[1] = win_strat[int(rnd[0])]
         rnd = list(map(int, rnd))
         points += play(rnd)
     return points

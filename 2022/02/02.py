@@ -8,6 +8,15 @@ filename = "02.input"
 with open(filename) as file:
     lines = file.read().splitlines()
 
+translate = {
+    "A" : 1,
+    "B" : 2,
+    "C" : 3,
+    "X" : 1,
+    "Y" : 2,
+    "Z" : 3
+}
+
 def play(round):
     points = 0
     wins = [-2, 1]
@@ -21,9 +30,7 @@ def play(round):
 def part_one():
     points = 0
     for line in lines:
-        l = line.replace('A', '1').replace('X', '1').replace('B', '2').replace('Y', '2').replace('C', '3').replace('Z', '3')
-        rnd = list(map(int, l.split()))
-        points += play(rnd)
+        points += play([translate[line[0]], translate[line[-1]]])
     return points
 
 def part_two():
@@ -31,17 +38,14 @@ def part_two():
     win_strat = [0, 2, 3, 1]
     loss_strat = [0, 3, 1, 2]
     for line in lines:
-        l = line.replace('A', '1').replace('B', '2').replace('C', '3')
-        rnd = l.split()
-        match rnd[1]:
+        opponent = translate[line[0]]
+        match line[-1]:
             case 'X':
-                rnd[1] = loss_strat[int(rnd[0])]
+                points += play([opponent, loss_strat[opponent]])
             case 'Y':
-                rnd[1] = rnd[0]
+                points += play([opponent, opponent])
             case 'Z':
-                rnd[1] = win_strat[int(rnd[0])]
-        rnd = list(map(int, rnd))
-        points += play(rnd)
+                points += play([opponent, win_strat[opponent]])
     return points
 
 print("Part 1: ", part_one())

@@ -11,15 +11,15 @@ with open(filename) as file:
 monkeys = {}
 
 for line in lines:
-    var, val = line.split(': ')
-    monkeys[var] = val
+    monkey, number = line.split(': ')
+    monkeys[monkey] = number
 
 def yell(monkey):
-    sentence = monkeys[monkey]
-    if len(sentence.split()) == 1:
-        return int(sentence)
+    number = monkeys[monkey]
+    if len(number.split()) == 1:
+        return int(number)
     else:
-        monkey1, operation, monkey2 = sentence.split()
+        monkey1, operation, monkey2 = number.split()
         return eval("{} {} {}".format(yell(monkey1), operation, yell(monkey2)))
 
 

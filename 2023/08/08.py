@@ -11,14 +11,14 @@ filename = "08.input"
 with open(filename) as file:
     lines = file.read().splitlines()
 
-directions = lines[0]
+directions = lines[0].replace('L', '0').replace('R', '1')
 dict = {}
 for i in range(2, len(lines)):
     key, value = lines[i].split(' = ')
     dict[key] = (value[1:4], value[6:9])
 
-pattern = re.compile(r'.*A$')
 starting_keys = []
+pattern = re.compile(r'.*A$')
 for key in dict.keys():
     if pattern.match(key):
         starting_keys.append(key)
@@ -29,10 +29,7 @@ def part_one():
     i = 0
     counter = 0
     while current != 'ZZZ':
-        if directions[i] == 'L':
-            current = dict[current][0]
-        else:
-            current = dict[current][1]
+        current = dict[current][int(directions[i])]
         i = (i + 1) % len(directions)
         counter += 1
     return counter
@@ -45,10 +42,7 @@ def part_two():
         i = 0
         counter = 0
         while not(pattern.match(current)):
-            if directions[i] == 'L':
-                current = dict[current][0]
-            else:
-                current = dict[current][1]
+            current = dict[current][int(directions[i])]
             i = (i + 1) % len(directions)
             counter += 1
         counters.append(counter)

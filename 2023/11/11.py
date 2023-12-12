@@ -13,12 +13,10 @@ with open(filename) as file:
 universe = np.array(list(map(list, lines)))
 
 double_rows = []
+double_cols = []
 for i in range(0, len(universe)):
     if np.all(universe[i] == '.'):
         double_rows.append(i)
-
-double_cols = []
-for i in range(0, len(universe[i])):
     if np.all(universe[:, i] == '.'):
         double_cols.append(i)
 
